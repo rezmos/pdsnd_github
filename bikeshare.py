@@ -196,24 +196,21 @@ def display_data(df):
         else:
             break
 
-
-def main():
-     """Bikeshare data analysis main"""
-    while True:
-        city, month, day = get_filters()
-        df = load_data(city, month, day)
-
-        bikeshare_stats(df)
-
-        if input('\nWould you like to restart? Enter yes or no.\n').lower() != 'yes':
-            break
-
 def bikeshare_stats(df):
     time_stats(df)
     station_stats(df)
     trip_duration_stats(df)
     user_stats(df)
     display_data(df)
+
+def main():
+     """Bikeshare data analysis main"""
+    while True:
+        city, month, day = get_filters()
+        bikeshare_stats(load_data(city, month, day))
+
+        if input('\nWould you like to restart? Enter yes or no.\n').lower() != 'yes':
+            break
 
 
 if __name__ == "__main__":
