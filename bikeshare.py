@@ -195,7 +195,7 @@ def display_data(df):
 
 
 def main():
-     """Bikeshare data analysis main"""
+     """Bikeshare data analysis main": First filter by city, month and day, then load data according to filter and finally do the analysis of the statistics"""
     while True:
         city, month, day = get_filters()
         df = load_data(city, month, day)
