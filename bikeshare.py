@@ -89,6 +89,12 @@ def time_stats(df):
     print('\nCalculating The Most Frequent Times of Travel...\n')
     start_time = time.time()
 
+    month_day_hour_stats(df)
+
+    print("\nThis took %s seconds." % (time.time() - start_time))
+    print('-' * 40)
+
+def month_day_hour_stats(df):
     # TO DO: display the most common month
     try:
         print("The most common month: {}".format(months[df['Month'].mode()[0]]))
@@ -106,9 +112,6 @@ def time_stats(df):
         print("The most common start hour: {}".format(df['hour'].mode()[0]))
     except KeyError:
         print("There is no information for that specific start hour")
-
-    print("\nThis took %s seconds." % (time.time() - start_time))
-    print('-' * 40)
 
 
 def station_stats(df):
@@ -193,24 +196,21 @@ def display_data(df):
         else:
             break
 
-
-def main():
-     """Bikeshare data analysis main": First filter by city, month and day, then load data according to filter and finally do the analysis of the statistics"""
-    while True:
-        city, month, day = get_filters()
-        df = load_data(city, month, day)
-
-        bikeshare_stats(df)
-
-        if input('\nWould you like to restart? Enter yes or no.\n').lower() != 'yes':
-            break
-
 def bikeshare_stats(df):
     time_stats(df)
     station_stats(df)
     trip_duration_stats(df)
     user_stats(df)
     display_data(df)
+
+def main():
+     """Bikeshare data analysis main": First filter by city, month and day, then load data according to filter and finally do the analysis of the statistics"""
+    while True:
+        city, month, day = get_filters()
+        bikeshare_stats(load_data(city, month, day))
+
+        if input('\nWould you like to restart? Enter yes or no.\n').lower() != 'yes':
+            break
 
 
 if __name__ == "__main__":
