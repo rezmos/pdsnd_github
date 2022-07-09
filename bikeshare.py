@@ -89,6 +89,12 @@ def time_stats(df):
     print('\nCalculating The Most Frequent Times of Travel...\n')
     start_time = time.time()
 
+    month_day_hour_stats(df)
+
+    print("\nThis took %s seconds." % (time.time() - start_time))
+    print('-' * 40)
+
+def month_day_hour_stats(df):
     # TO DO: display the most common month
     try:
         print("The most common month: {}".format(months[df['Month'].mode()[0]]))
@@ -106,9 +112,6 @@ def time_stats(df):
         print("The most common start hour: {}".format(df['hour'].mode()[0]))
     except KeyError:
         print("There is no information for that specific start hour")
-
-    print("\nThis took %s seconds." % (time.time() - start_time))
-    print('-' * 40)
 
 
 def station_stats(df):
